@@ -22,3 +22,4 @@ go.work
 
 # Ignore the program's output files
 *.png
+!media/*.png
