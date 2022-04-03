@@ -36,7 +36,7 @@ func main() {
 			didHit, hitInfo := camera.MarchAlongRay(ray, scene, StepSize)
 
 			if didHit {
-				pixelColor = Color{Red: uint8(hitInfo.RayLength * 235.0), Green: 164, Blue: 135, Alpha: 255}
+				pixelColor = Color{Red: uint8(hitInfo.Normal.X * 235.0), Green: uint8(hitInfo.Normal.Y * 164.0), Blue: uint8(hitInfo.Normal.Z * 135.0), Alpha: 255}
 			}
 
 			image.SetPixelColor(x, y, pixelColor)
