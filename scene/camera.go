@@ -60,14 +60,14 @@ func (c *Camera) GenerateRayForPixelWithOffset(pixelX int, pixelY int, offsetX f
 	direction.X += screenX * aspectRatio
 	direction.Y -= screenY
 
-	return Ray{Origin: Add(c.Position, Mul(direction, c.nearPlane)), Direction: direction}
+	return Ray{Origin: Add(c.Position, MultiplyScalar(direction, c.nearPlane)), Direction: direction}
 }
 
 // Cast a ray into the scene and march towards the surface until an intersection is found, or until the
 // ray passes the far plane of the camera
 func (c *Camera) MarchAlongRay(ray Ray, scene Scene, stepSize float64) (bool, SurfaceHitInfo) {
 	for distance := 0.0; distance < c.farPlane; distance += stepSize {
-		pointInSpace := Add(ray.Origin, Mul(ray.Direction, distance))
+		pointInSpace := Add(ray.Origin, MultiplyScalar(ray.Direction, distance))
 
 		if scene.DoesPointIntersectSurface(pointInSpace) {
 			// Surface intersection found

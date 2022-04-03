@@ -36,7 +36,7 @@ func MandelbulbSDF(point Vec3, iterations int, power int, bailout float64) float
 		phi = phi * powerFloat
 
 		// Convert back to cartesian coordinates
-		z = Mul(Vec3{X: math.Sin(theta) * math.Cos(phi), Y: math.Sin(phi) * math.Sin(theta), Z: math.Cos(theta)}, zr)
+		z = MultiplyScalar(Vec3{X: math.Sin(theta) * math.Cos(phi), Y: math.Sin(phi) * math.Sin(theta), Z: math.Cos(theta)}, zr)
 		z.Add(point)
 	}
 
