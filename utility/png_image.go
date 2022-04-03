@@ -8,9 +8,6 @@ import (
 	"os"
 )
 
-// Each pixel consists out of 4 uint8 values: red, green, blue, and alpha
-const componentsPerPixel = 4
-
 // Contains all functionality needed to export raw RGBA pixel data as a .png file
 type PngImage struct {
 	data     *image.RGBA
@@ -26,10 +23,7 @@ func NewPngImage(width int, height int, fileName string) PngImage {
 // Each pixel is assumed to use the RGBA uint8 color format. A color can be defined
 // by specifying a value between 0 and 255 (inclusive) for each color component.
 func (p *PngImage) SetPixelColor(x int, y int, color Color) {
-	index := (x * componentsPerPixel) + (p.data.Rect.Dx() * y * componentsPerPixel)
-
-	p.data.ColorModel()
-
+	index := p.data.PixOffset(x, y)
 	p.data.Pix[index] = color.Red
 	p.data.Pix[index+1] = color.Green
 	p.data.Pix[index+2] = color.Blue
