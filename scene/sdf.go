@@ -12,6 +12,7 @@ func SphereSDF(point Vec3, radius float64) float64 {
 }
 
 // Mandelbulb fractal
+//
 // Adapted from: http://blog.hvidtfeldts.net/index.php/2011/09/distance-estimated-3d-fractals-v-the-mandelbulb-different-de-approximations/
 func MandelbulbSDF(point Vec3, iterations int, power int, bailout float64) float64 {
 	z := point

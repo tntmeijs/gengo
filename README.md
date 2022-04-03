@@ -14,4 +14,8 @@ Cheers,
 Tahar
 
 ## Showcase
-![result](media/result.png)
+### Lighting model
+![shading](media/shading.png)
+
+### Mandelbulb
+![mandelbulb](media/mandelbulb.png)

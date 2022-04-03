@@ -28,7 +28,7 @@ const SpecularStrength = 0.5
 const SpecularShininess = 32
 
 // Camera transformation
-var cameraPosition = Vec3{X: 0.0, Y: 0.0, Z: -1.5}
+var cameraPosition = Vec3{X: 0.0, Y: 0, Z: -1.525}
 var cameraLookAt = Vec3{X: 0.0, Y: 0.0, Z: 0.0}
 
 // Lights
@@ -44,7 +44,7 @@ var surfaceColor = Color{Red: 26, Green: 188, Blue: 156, Alpha: 255}
 
 // Entire scene represented as a signed distance function
 func sceneSDF(point Vec3) float64 {
-	return SphereSDF(point, 1)
+	return MandelbulbSDF(point, 7, 8, 5.0)
 }
 
 // Simple Blinn-Phong lighting model
