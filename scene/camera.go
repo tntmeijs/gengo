@@ -13,14 +13,10 @@ type Camera struct {
 }
 
 // Create a new camera with the following properties:
-//
-// - Position: position of the camera in space
-//
-// - Focus: point in space the camera is pointed towards
-//
-// - NearPlane: camera's near plane (how close an object can be before it gets clipped)
-//
-// - FarPlane: camera's far plane (how far an object can be before it gets clipped)
+//	Position  : position of the camera in space
+//	Focus     : point in space the camera is pointed towards
+//	NearPlane : camera near plane (how close an object can be before it gets clipped)
+//	FarPlane  : camera far plane (how far an object can be before it gets clipped)
 func NewCamera(position Vec3, focus Vec3, nearPlane float64, farPlane float64) Camera {
 	return Camera{position, Normalize(Sub(focus, position)), nearPlane, farPlane}
 }
@@ -56,9 +52,12 @@ func (c *Camera) GenerateRayForPixelWithOffset(pixelX int, pixelY int, offsetX f
 	screenX = (screenX * 2.0) - 1.0
 	screenY = (screenY * 2.0) - 1.0
 
+	// Compensate the aspect ratio to ensure that the results do not look stretched
+	aspectRatio := float64(resolutionX) / float64(resolutionY)
+
 	// Offset the ray to make it trace through the imaginary image plane
 	direction := c.GetDirection()
-	direction.X += screenX
+	direction.X += screenX * aspectRatio
 	direction.Y -= screenY
 
 	return Ray{Origin: Add(c.Position, Mul(direction, c.nearPlane)), Direction: direction}
