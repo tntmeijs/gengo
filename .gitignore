@@ -23,3 +23,6 @@ go.work
 # Ignore the program's output files
 *.png
 !media/*.png
+
+# Visual Studio Code
+.vscode
